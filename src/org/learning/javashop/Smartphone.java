@@ -8,11 +8,14 @@ public class Smartphone extends Product{
     private int memory;
 
 
-    public Smartphone(String name, String brand, BigDecimal price, BigDecimal vat, String codeIMEI, int memory) {
-        super(name, brand, price, vat);
+    public Smartphone(String name, String brand, BigDecimal price, BigDecimal vat, boolean loyaltyCard, String codeIMEI, int memory) {
+        super(name, brand, price, vat, loyaltyCard);
 
         this.codeIMEI = codeIMEI;
         this.memory = memory;
+        if (this.memory < 32 && loyaltyCard) {
+            this.setDiscount(new BigDecimal("0.05"));
+        }
     }
 
     // GETTER AND SETTER
@@ -32,4 +35,5 @@ public class Smartphone extends Product{
     public void setMemory(int memory) {
         this.memory = memory;
     }
+
 }

@@ -1,12 +1,26 @@
 package org.learning.javashop;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Scanner;
 
 public class Cart {
     public static void main(String[] args) {
+        BigDecimal totalCart = BigDecimal.ZERO;
+
         Scanner scan = new Scanner(System.in);
 
+        // CHIEDO ALL'UTENTE SE HA LA CARTA FEDELTA'
+        System.out.println("Do you have a loyalty card?(Y/N) ");
+        String selectCard = scan.nextLine();
+
+        boolean haveCard;
+
+        if (selectCard.toLowerCase().equals("y")) {
+            haveCard = true;
+        } else {
+            haveCard = false;
+        }
 
         // CHIEDO ALL'UTENTE QUANTI PRODOTTI VUOLE E GENERO L'ARRAY CART
         System.out.println("How many products do you want to include? ");
@@ -38,7 +52,7 @@ public class Cart {
                     System.out.print("Memory: ");
                     int memory = Integer.parseInt(scan.nextLine());
 
-                    Smartphone phone = new Smartphone(name, brand, price, vat, codeIMEI, memory);
+                    Smartphone phone = new Smartphone(name, brand, price, vat, haveCard, codeIMEI, memory);
                     cart[i] = phone;
 
                     break;
@@ -57,7 +71,7 @@ public class Cart {
                         isSmart = false;
                     }
 
-                    Television tv = new Television(name, brand, price, vat, dimension, isSmart);
+                    Television tv = new Television(name, brand, price, vat, haveCard, dimension, isSmart);
                     cart[i] = tv;
 
                     break;
@@ -76,7 +90,7 @@ public class Cart {
                         isWireless = false;
                     }
 
-                    Headphones headphones = new Headphones(name, brand, price, vat, color, isWireless);
+                    Headphones headphones = new Headphones(name, brand, price, vat, haveCard, color, isWireless);
                     cart[i] = headphones;
 
                     break;
@@ -90,11 +104,11 @@ public class Cart {
         // STAMPO L'ELENCO DEI PRODOTTI DEL CARRELLO CICLANDO OGNI ELEMENTO DI ESSO
 
         for (Product p : cart){
-            System.out.println("- " + p.getName() + " " + p.getBrand() + "...." + p.getFullPrice() + "€");
+            System.out.println(p.getInfo());
+            totalCart = totalCart.add(p.getFinalPrice());
         }
 
-
-
+        System.out.println("Total: " + totalCart.setScale(2, RoundingMode.HALF_EVEN) + "€");
 
         scan.close();
 

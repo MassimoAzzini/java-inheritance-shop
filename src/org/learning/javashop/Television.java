@@ -5,13 +5,17 @@ import java.math.BigDecimal;
 public class Television extends Product {
 
     private String dimensions;
-    private boolean smart;
+    private boolean isSmart;
 
-    public Television(String name, String brand, BigDecimal price, BigDecimal vat, String dimensions, boolean smart) {
-        super(name, brand, price, vat);
+    public Television(String name, String brand, BigDecimal price, BigDecimal vat, boolean loyaltyCard, String dimensions, boolean smart) {
+        super(name, brand, price, vat, loyaltyCard);
 
         this.dimensions = dimensions;
-        this.smart = smart;
+        this.isSmart = smart;
+
+        if (!this.isSmart && loyaltyCard) {
+            this.setDiscount(new BigDecimal("0.10"));
+        }
     }
 
     public String getDimensions() {
@@ -19,7 +23,7 @@ public class Television extends Product {
     }
 
     public boolean getSmart() {
-        return smart;
+        return isSmart;
     }
 
     public String setDimensions(String dimensions){
@@ -27,6 +31,7 @@ public class Television extends Product {
     }
 
     public boolean setSmart(boolean smart){
-        return this.smart = smart;
+        return this.isSmart = smart;
     }
-}
+
+  }

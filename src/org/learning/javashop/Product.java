@@ -11,13 +11,24 @@ public class Product {
     private BigDecimal price;
     private BigDecimal vat;
 
+    private boolean withLoyaltyCard;
+    private BigDecimal discount;
+
+
     // COSTRUTTORI
 
-    public Product(String name, String brand,BigDecimal price, BigDecimal vat) {
+    public Product(String name, String brand,BigDecimal price, BigDecimal vat, boolean loyaltyCard) {
         this.name = name;
         this.brand = brand;
         this.price = price;
         this.vat = vat;
+        this.withLoyaltyCard = loyaltyCard;
+
+        if (withLoyaltyCard) {
+            this.discount = new BigDecimal("0.02");
+        } else {
+            this.discount = BigDecimal.ZERO;
+        }
 
         this.code = generateCode();
     }
@@ -45,8 +56,14 @@ public class Product {
         return price.setScale(2, RoundingMode.HALF_EVEN);
     }
 
-    public BigDecimal getFullPrice() {
-        return price.add(price.multiply(vat)).setScale(2, RoundingMode.HALF_EVEN);
+    public BigDecimal getFullPrice() { return price.add(price.multiply(vat)).setScale(2, RoundingMode.HALF_EVEN); }
+
+    public BigDecimal getFinalPrice() {
+        if (withLoyaltyCard){
+            return getFullPrice().subtract(getFullPrice().multiply(discount)).setScale(2, RoundingMode.HALF_EVEN);
+        } else {
+            return getFullPrice();
+        }
     }
 
     public void setName(String name) {
@@ -68,8 +85,12 @@ public class Product {
         this.price = price;
     }
 
-    public void getInfo(){
-        System.out.println("Product name: " + name + ", brand: " + brand + ", price: " + getPrice() + ", price+vat: " + getFullPrice());
+    public void setDiscount(BigDecimal discount) {
+        this.discount = discount;
+    }
+
+    public String getInfo(){
+        return "Product name: " + name + ", brand: " + brand + "......." + ", price(vat incl): " + getFinalPrice() + "€";
     }
 
 
@@ -78,6 +99,7 @@ public class Product {
         Random randomGenerator = new Random();
         return randomGenerator.nextInt(100000000);
     }
+
 
 }
 
