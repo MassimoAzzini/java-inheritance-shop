@@ -68,6 +68,10 @@ public class Product {
         this.price = price;
     }
 
+    public void getInfo(){
+        System.out.println("Product name: " + name + ", brand: " + brand + ", price: " + getPrice() + ", price+vat: " + getFullPrice());
+    }
+
 
     // METODI
     private int generateCode() {
