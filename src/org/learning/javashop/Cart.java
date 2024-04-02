@@ -52,14 +52,16 @@ public class Cart {
 
                     boolean isSmart;
 
-                    if (selectSmart.toLowerCase().equals("y")){
+                    if (selectSmart.toLowerCase().equals("y")) {
                         isSmart = true;
-                    }else{
+                    } else {
                         isSmart = false;
                     }
 
                     Television tv = new Television(name, brand, price, vat, dimension, isSmart);
                     cart[i] = tv;
+
+                    break;
 
                 case 3:
                     System.out.println("Color: ");
@@ -69,23 +71,22 @@ public class Cart {
 
                     boolean isWireless;
 
-                    if (selectWireless.toLowerCase().equals("y")){
+                    if (selectWireless.toLowerCase().equals("y")) {
                         isWireless = true;
-                    }else{
+                    } else {
                         isWireless = false;
                     }
 
                     Headphones headphones = new Headphones(name, brand, price, vat, color, isWireless);
                     cart[i] = headphones;
 
+                    break;
+
                 default:
                     break;
             }
 
-
-
-
-
+        }
         scan.close();
 
     }
