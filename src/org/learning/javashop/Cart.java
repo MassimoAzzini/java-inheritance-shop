@@ -7,14 +7,13 @@ public class Cart {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
-        // Television LGFigo = new Television("Oled 52x", "LG", new BigDecimal ("1549.99"), new BigDecimal("0.21"), "52", true);
 
-
-
+        // CHIEDO ALL'UTENTE QUANTI PRODOTTI VUOLE E GENERO L'ARRAY CART
         System.out.println("How many products do you want to include? ");
         int items = Integer.parseInt(scan.nextLine());
         Product [] cart = new Product[items];
 
+        // CHIEDO ALL'UTENTE CHE COSA VUOLE E LO INSEERISCO NELL'ARRAY CART
         for (int i = 0; i < items; i++) {
 
             System.out.println("What product do you want to include?");
@@ -34,9 +33,9 @@ public class Cart {
 
             switch (select) {
                 case 1:
-                    System.out.println("Code IMEI: ");
+                    System.out.print("Code IMEI: ");
                     String codeIMEI = scan.nextLine();
-                    System.out.println("Memory: ");
+                    System.out.print("Memory: ");
                     int memory = Integer.parseInt(scan.nextLine());
 
                     Smartphone phone = new Smartphone(name, brand, price, vat, codeIMEI, memory);
@@ -45,9 +44,9 @@ public class Cart {
                     break;
 
                 case 2:
-                    System.out.println("Dimensions: ");
+                    System.out.print("Dimensions: ");
                     String dimension = scan.nextLine();
-                    System.out.println("Is a Smart-Tv?(Y/N): ");
+                    System.out.print("Is a Smart-Tv?(Y/N): ");
                     String selectSmart = scan.nextLine();
 
                     boolean isSmart;
@@ -64,9 +63,9 @@ public class Cart {
                     break;
 
                 case 3:
-                    System.out.println("Color: ");
+                    System.out.print("Color: ");
                     String color = scan.nextLine();
-                    System.out.println("Is Wireless?(Y/N): ");
+                    System.out.print("Is Wireless?(Y/N): ");
                     String selectWireless = scan.nextLine();
 
                     boolean isWireless;
@@ -87,6 +86,16 @@ public class Cart {
             }
 
         }
+
+        // STAMPO L'ELENCO DEI PRODOTTI DEL CARRELLO CICLANDO OGNI ELEMENTO DI ESSO
+
+        for (Product p : cart){
+            System.out.println("- " + p.getName() + " " + p.getBrand() + "...." + p.getFullPrice() + "€");
+        }
+
+
+
+
         scan.close();
 
     }
