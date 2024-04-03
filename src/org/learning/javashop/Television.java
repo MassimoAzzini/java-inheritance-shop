@@ -34,4 +34,9 @@ public class Television extends Product {
         return this.isSmart = smart;
     }
 
+    @Override
+    public String getInfo(){
+        return "Product name: " + getName() + ", brand: " + getBrand() + ", dimensions: " + dimensions + "  .......  " + "price(vat incl): " + getFinalPrice() + "€";
+    }
+
   }

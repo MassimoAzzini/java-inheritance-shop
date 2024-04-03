@@ -17,4 +17,9 @@ public class Headphones extends Product {
         }
     }
 
+    @Override
+    public String getInfo(){
+        return "Product name: " + getName() + ", brand: " + getBrand() + ", color: " + color + "  .......  " + "price(vat incl): " + getFinalPrice() + "€";
+    }
+
 }

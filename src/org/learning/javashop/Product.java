@@ -90,7 +90,7 @@ public class Product {
     }
 
     public String getInfo(){
-        return "Product name: " + name + ", brand: " + brand + "......." + ", price(vat incl): " + getFinalPrice() + "€";
+        return "Product name: " + name + ", brand: " + brand + "  .......  " + "price(vat incl): " + getFinalPrice() + "€";
     }
 
 

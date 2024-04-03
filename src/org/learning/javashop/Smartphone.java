@@ -36,4 +36,9 @@ public class Smartphone extends Product{
         this.memory = memory;
     }
 
+    @Override
+    public String getInfo(){
+        return "Product name: " + getName() + ", brand: " + getBrand() + ", memory: " + memory + "  .......  " + "price(vat incl): " + getFinalPrice() + "€";
+    }
+
 }
